@@ -196,6 +196,10 @@ const StepImageContainer = styled.div`
   height: 0;
   padding-bottom: 75%;
   overflow: hidden;
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(30, 30, 30, 0.9));
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
   &:before {
     content: '';
@@ -214,14 +218,30 @@ const StepImageContainer = styled.div`
   }
 `;
 
-const StepImage = styled.img`
+const SVGContainer = styled(motion.div)`
+  position: absolute;
+  width: 85%;
+  height: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+`;
+
+const SVGOverlay = styled(motion.div)`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  filter: grayscale(20%) contrast(1.1);
+  background: radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.05), transparent 70%);
+  z-index: 0;
+`;
+
+const StepSVG = styled(motion.svg)`
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.2));
 `;
 
 const fadeIn = {
@@ -317,7 +337,394 @@ const VenturesProcess = () => {
                 <StepDescription>{step.description}</StepDescription>
               </StepContent>
               <StepImageContainer>
-                <StepImage src={step.image} alt={step.title} />
+                <SVGOverlay 
+                  animate={{
+                    opacity: [0.5, 0.8, 0.5],
+                  }}
+                  transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+                />
+                <SVGContainer
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                >
+                  {step.number === "01" && (
+                    <StepSVG viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                      {/* Identify Opportunities SVG - Compass/Exploration Theme */}
+                      <motion.circle 
+                        cx="100" 
+                        cy="100" 
+                        r="70" 
+                        fill="none" 
+                        stroke="rgba(212, 175, 55, 0.2)" 
+                        strokeWidth="1"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 2, ease: "easeInOut" }}
+                      />
+                      <motion.circle 
+                        cx="100" 
+                        cy="100" 
+                        r="50" 
+                        fill="none" 
+                        stroke="rgba(212, 175, 55, 0.3)" 
+                        strokeWidth="1"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 2, delay: 0.3, ease: "easeInOut" }}
+                      />
+                      <motion.path 
+                        d="M100,30 L100,170 M30,100 L170,100" 
+                        stroke="rgba(212, 175, 55, 0.5)" 
+                        strokeWidth="1.5"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 2, delay: 0.6, ease: "easeInOut" }}
+                      />
+                      <motion.path 
+                        d="M100,100 L130,70" 
+                        stroke="rgba(212, 175, 55, 0.9)" 
+                        strokeWidth="2"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1, delay: 1, ease: "easeInOut" }}
+                      />
+                      <motion.circle 
+                        cx="100" 
+                        cy="100" 
+                        r="8" 
+                        fill="rgba(212, 175, 55, 0.9)"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
+                      />
+                      <motion.circle 
+                        cx="130" 
+                        cy="70" 
+                        r="5" 
+                        fill="rgba(212, 175, 55, 0.9)"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.5, delay: 1.4, ease: "easeOut" }}
+                      />
+                    </StepSVG>
+                  )}
+                  
+                  {step.number === "02" && (
+                    <StepSVG viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                      {/* Strategic Planning SVG - Blueprint/Planning Theme */}
+                      <motion.rect 
+                        x="40" 
+                        y="40" 
+                        width="120" 
+                        height="120" 
+                        fill="none" 
+                        stroke="rgba(212, 175, 55, 0.3)" 
+                        strokeWidth="1"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 2, ease: "easeInOut" }}
+                      />
+                      <motion.line 
+                        x1="40" 
+                        y1="70" 
+                        x2="160" 
+                        y2="70" 
+                        stroke="rgba(212, 175, 55, 0.2)" 
+                        strokeWidth="1"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1, delay: 0.3, ease: "easeInOut" }}
+                      />
+                      <motion.line 
+                        x1="40" 
+                        y1="100" 
+                        x2="160" 
+                        y2="100" 
+                        stroke="rgba(212, 175, 55, 0.2)" 
+                        strokeWidth="1"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1, delay: 0.4, ease: "easeInOut" }}
+                      />
+                      <motion.line 
+                        x1="40" 
+                        y1="130" 
+                        x2="160" 
+                        y2="130" 
+                        stroke="rgba(212, 175, 55, 0.2)" 
+                        strokeWidth="1"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1, delay: 0.5, ease: "easeInOut" }}
+                      />
+                      <motion.line 
+                        x1="70" 
+                        y1="40" 
+                        x2="70" 
+                        y2="160" 
+                        stroke="rgba(212, 175, 55, 0.2)" 
+                        strokeWidth="1"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1, delay: 0.6, ease: "easeInOut" }}
+                      />
+                      <motion.line 
+                        x1="100" 
+                        y1="40" 
+                        x2="100" 
+                        y2="160" 
+                        stroke="rgba(212, 175, 55, 0.2)" 
+                        strokeWidth="1"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1, delay: 0.7, ease: "easeInOut" }}
+                      />
+                      <motion.line 
+                        x1="130" 
+                        y1="40" 
+                        x2="130" 
+                        y2="160" 
+                        stroke="rgba(212, 175, 55, 0.2)" 
+                        strokeWidth="1"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1, delay: 0.8, ease: "easeInOut" }}
+                      />
+                      <motion.path 
+                        d="M60,90 L80,110 L110,60 L140,90" 
+                        fill="none" 
+                        stroke="rgba(212, 175, 55, 0.9)" 
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1.5, delay: 1, ease: "easeInOut" }}
+                      />
+                      <motion.circle 
+                        cx="60" 
+                        cy="90" 
+                        r="4" 
+                        fill="rgba(212, 175, 55, 0.9)"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3, delay: 1.2, ease: "easeOut" }}
+                      />
+                      <motion.circle 
+                        cx="80" 
+                        cy="110" 
+                        r="4" 
+                        fill="rgba(212, 175, 55, 0.9)"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3, delay: 1.3, ease: "easeOut" }}
+                      />
+                      <motion.circle 
+                        cx="110" 
+                        cy="60" 
+                        r="4" 
+                        fill="rgba(212, 175, 55, 0.9)"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3, delay: 1.4, ease: "easeOut" }}
+                      />
+                      <motion.circle 
+                        cx="140" 
+                        cy="90" 
+                        r="4" 
+                        fill="rgba(212, 175, 55, 0.9)"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3, delay: 1.5, ease: "easeOut" }}
+                      />
+                    </StepSVG>
+                  )}
+                  
+                  {step.number === "03" && (
+                    <StepSVG viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                      {/* Resource Allocation SVG - Puzzle/Assembly Theme */}
+                      <motion.path 
+                        d="M60,60 L90,60 L90,90 L120,90 L120,120 L90,120 L90,150 L60,150 L60,120 L30,120 L30,90 L60,90 Z" 
+                        fill="none" 
+                        stroke="rgba(212, 175, 55, 0.4)" 
+                        strokeWidth="1.5"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 2, ease: "easeInOut" }}
+                      />
+                      <motion.path 
+                        d="M120,60 L150,60 L150,90 L170,90 L170,120 L150,120 L150,150 L120,150 L120,120 L90,120 L90,90 L120,90 Z" 
+                        fill="none" 
+                        stroke="rgba(212, 175, 55, 0.4)" 
+                        strokeWidth="1.5"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 2, delay: 0.5, ease: "easeInOut" }}
+                      />
+                      <motion.rect 
+                        x="60" 
+                        y="90" 
+                        width="30" 
+                        height="30" 
+                        fill="rgba(212, 175, 55, 0.15)"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.5, delay: 1, ease: "easeOut" }}
+                      />
+                      <motion.rect 
+                        x="90" 
+                        y="90" 
+                        width="30" 
+                        height="30" 
+                        fill="rgba(212, 175, 55, 0.3)"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.5, delay: 1.2, ease: "easeOut" }}
+                      />
+                      <motion.rect 
+                        x="120" 
+                        y="90" 
+                        width="30" 
+                        height="30" 
+                        fill="rgba(212, 175, 55, 0.45)"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.5, delay: 1.4, ease: "easeOut" }}
+                      />
+                      <motion.circle 
+                        cx="75" 
+                        cy="75" 
+                        r="5" 
+                        fill="rgba(212, 175, 55, 0.9)"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3, delay: 1.6, ease: "easeOut" }}
+                      />
+                      <motion.circle 
+                        cx="135" 
+                        cy="75" 
+                        r="5" 
+                        fill="rgba(212, 175, 55, 0.9)"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3, delay: 1.7, ease: "easeOut" }}
+                      />
+                      <motion.circle 
+                        cx="105" 
+                        cy="135" 
+                        r="5" 
+                        fill="rgba(212, 175, 55, 0.9)"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3, delay: 1.8, ease: "easeOut" }}
+                      />
+                    </StepSVG>
+                  )}
+                  
+                  {step.number === "04" && (
+                    <StepSVG viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                      {/* Execution & Scaling SVG - Growth/Expansion Theme */}
+                      <motion.path 
+                        d="M40,160 L160,160" 
+                        stroke="rgba(212, 175, 55, 0.3)" 
+                        strokeWidth="1"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1, ease: "easeInOut" }}
+                      />
+                      <motion.path 
+                        d="M40,40 L40,160" 
+                        stroke="rgba(212, 175, 55, 0.3)" 
+                        strokeWidth="1"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1, delay: 0.2, ease: "easeInOut" }}
+                      />
+                      <motion.path 
+                        d="M40,130 L60,130 M40,100 L60,100 M40,70 L60,70" 
+                        stroke="rgba(212, 175, 55, 0.2)" 
+                        strokeWidth="1"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1, delay: 0.4, ease: "easeInOut" }}
+                      />
+                      <motion.path 
+                        d="M70,160 L70,140 M100,160 L100,140 M130,160 L130,140" 
+                        stroke="rgba(212, 175, 55, 0.2)" 
+                        strokeWidth="1"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 1, delay: 0.6, ease: "easeInOut" }}
+                      />
+                      <motion.path 
+                        d="M40,160 L60,130 L80,140 L100,90 L120,100 L140,60 L160,40" 
+                        fill="none" 
+                        stroke="rgba(212, 175, 55, 0.9)" 
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 2, delay: 0.8, ease: "easeInOut" }}
+                      />
+                      <motion.circle 
+                        cx="60" 
+                        cy="130" 
+                        r="4" 
+                        fill="rgba(212, 175, 55, 0.9)"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3, delay: 1.2, ease: "easeOut" }}
+                      />
+                      <motion.circle 
+                        cx="80" 
+                        cy="140" 
+                        r="4" 
+                        fill="rgba(212, 175, 55, 0.9)"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3, delay: 1.3, ease: "easeOut" }}
+                      />
+                      <motion.circle 
+                        cx="100" 
+                        cy="90" 
+                        r="4" 
+                        fill="rgba(212, 175, 55, 0.9)"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3, delay: 1.4, ease: "easeOut" }}
+                      />
+                      <motion.circle 
+                        cx="120" 
+                        cy="100" 
+                        r="4" 
+                        fill="rgba(212, 175, 55, 0.9)"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3, delay: 1.5, ease: "easeOut" }}
+                      />
+                      <motion.circle 
+                        cx="140" 
+                        cy="60" 
+                        r="4" 
+                        fill="rgba(212, 175, 55, 0.9)"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3, delay: 1.6, ease: "easeOut" }}
+                      />
+                      <motion.circle 
+                        cx="160" 
+                        cy="40" 
+                        r="6" 
+                        fill="rgba(212, 175, 55, 0.9)"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3, delay: 1.7, ease: "easeOut" }}
+                      />
+                    </StepSVG>
+                  )}
+                </SVGContainer>
               </StepImageContainer>
             </ProcessStep>
           ))}

@@ -193,6 +193,7 @@ const BackgroundPattern = styled.div`
   z-index: 1;
 `;
 
+// eslint-disable-next-line no-unused-vars
 const Image = styled.img`
   position: absolute;
   top: 0;

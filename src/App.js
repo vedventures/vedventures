@@ -11,6 +11,9 @@ import AboutPage from './components/about/AboutPage';
 import VenturesPage from './components/ventures/VenturesPage';
 // eslint-disable-next-line no-unused-vars
 import InsightsPage from './components/insights/InsightsPage';
+import TermsPage from './components/legal/TermsPage';
+import PrivacyPage from './components/legal/PrivacyPage';
+import ContactPage from './components/contact/ContactPage';
 
 function App() {
   return (
@@ -23,6 +26,9 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/ventures" element={<VenturesPage />} />
             <Route path="/insights" element={<InsightsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/terms" element={<TermsPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
             {/* Additional routes will be added as we develop more pages */}
           </Routes>
         </Layout>

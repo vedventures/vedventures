@@ -128,6 +128,7 @@ const VentureImageContainer = styled(motion.div)`
   height: 0;
   padding-bottom: 75%;
   overflow: hidden;
+  background: linear-gradient(135deg, var(--dark-background), var(--light-background));
   
   &:before {
     content: '';
@@ -140,26 +141,95 @@ const VentureImageContainer = styled(motion.div)`
     pointer-events: none;
     z-index: 2;
   }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.15), transparent 60%);
+    z-index: 1;
+  }
   
   @media (max-width: 992px) {
     order: 1;
   }
 `;
 
-const VentureImage = styled.img`
+const AnimatedPattern = styled(motion.div)`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  filter: grayscale(20%) contrast(1.1);
-  transition: all 0.5s ease;
-  
-  &:hover {
-    filter: grayscale(0%) contrast(1.05);
-    transform: scale(1.02);
-  }
+  z-index: 1;
+  opacity: 0.9;
+  overflow: hidden;
+`;
+
+const VentureIcon = styled(motion.div)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4rem;
+  color: var(--accent);
+  z-index: 3;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(10, 10, 10, 0.8);
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  backdrop-filter: blur(5px);
+`;
+
+const FloatingShape = styled(motion.div)`
+  position: absolute;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), transparent);
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
+`;
+
+const DiamondShape = styled(motion.div)`
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), transparent 70%);
+  transform: rotate(45deg);
+  z-index: 1;
+`;
+
+const GlowingCircle = styled(motion.div)`
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  z-index: 1;
+`;
+
+const FloatingLine = styled(motion.div)`
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.7), transparent);
+  z-index: 1;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+`;
+
+const GridPattern = styled(motion.div)`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(212, 175, 55, 0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(212, 175, 55, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  z-index: 1;
+  opacity: 0.5;
 `;
 
 const VentureTitle = styled.h3`
@@ -289,48 +359,48 @@ const VenturesList = () => {
   const ventures = [
     {
       title: "Next-Gen Marketing & Cognitive Tech",
-      description: "Our flagship vertical combines cutting-edge marketing strategies with AI-powered solutions to deliver transformative digital experiences that drive measurable business growth.",
+      description: "Our flagship vertical combines cutting-edge marketing strategies with AI-powered solutions to deliver transformative digital experiences that drive measurable business growth. We harness the power of data and creativity to help brands thrive in an increasingly complex digital landscape.",
       features: [
-        "AI-driven marketing automation",
-        "Custom web development & UX design",
-        "Cognitive analytics & insights",
-        "Conversational AI & chatbot solutions"
+        "AI-driven Marketing Automation: Intelligent systems that personalize customer journeys and optimize campaigns",
+        "Custom Web Development & UX Design: Immersive digital experiences crafted for engagement and conversion",
+        "Cognitive Analytics & Insights: Advanced data processing that transforms information into actionable intelligence",
+        "Conversational AI Solutions: Sophisticated chatbots and virtual assistants that elevate customer interactions"
       ],
       image: "/images/ventures/web-development.jpg",
       link: "#"
     },
     {
-      title: "Construction Materials",
-      description: "We provide high-quality construction materials that meet the highest standards of durability, sustainability, and aesthetic appeal.",
+      title: "Foundations that Endure. Materials that Inspire.",
+      description: "We supply structural and architectural essentials that form the backbone of India's finest spaces. Whether you're building upward or outward, our curated selection of construction materials supports every layer of your vision—with uncompromising strength, utility, and elegance.",
       features: [
-        "Premium building materials",
-        "Sustainable construction solutions",
-        "Architectural elements",
-        "Custom fabrication services"
+        "Reinforcement Solutions: Robust steel options engineered for seismic stability and long-term performance",
+        "Structural & Architectural Surfaces: Precision-sourced stone, marble, and finishes that elevate visual impact",
+        "Core Construction Materials: Cement, timber, and foundational supplies tailored to modern standards",
+        "Trade-Grade Quality & Timely Fulfilment: Trusted by contractors, builders, and designers"
       ],
       image: "/images/ventures/construction.jpg",
       link: "#"
     },
     {
-      title: "Digital Products",
-      description: "Our digital products division focuses on creating innovative software solutions that address real-world challenges across various industries.",
+      title: "Digital Products that Drive Possibility",
+      description: "Our digital products division is dedicated to building intelligent, scalable, and impact-driven solutions that help businesses evolve. From startups to enterprises, we empower transformation through technology that adapts, automates, and advances.",
       features: [
-        "Mobile applications",
-        "SaaS platforms",
-        "AI-powered solutions",
-        "Digital transformation tools"
+        "Custom Mobile Applications: Seamlessly designed, user-centric apps that engage and deliver at scale",
+        "SaaS Platforms: Agile, cloud-native software that streamlines operations and unlocks new value",
+        "AI-Powered Innovations: Smart systems built to analyze, predict, and optimize real-world workflows",
+        "Digital Transformation Accelerators: Tools and frameworks that bridge legacy systems with the future of work"
       ],
       image: "/images/ventures/digital-products.jpg",
       link: "#"
     },
     {
-      title: "Retail",
-      description: "Our retail ventures offer premium products and exceptional customer experiences, with a focus on quality, design, and sustainability.",
+      title: "Retail Experiences that Elevate Everyday Life",
+      description: "Our retail division is expanding with carefully curated consumer touchpoints that blend convenience with quality. We're crafting spaces and services that transform routine transactions into meaningful experiences, bringing premium offerings to communities across India.",
       features: [
-        "Luxury home goods",
-        "Fashion accessories",
-        "Specialty food products",
-        "Experiential retail concepts"
+        "Signature Hair Salon: A premium grooming destination offering personalized styling and rejuvenation services",
+        "Modern Supermarket: Thoughtfully designed retail space with curated selection of daily essentials and specialty items",
+        "Gourmet Eatery: Curated dining experience offering quality cuisine in a refined, welcoming atmosphere",
+        "Amul Franchise: Authorized partnership bringing India's beloved dairy brand with guaranteed freshness and quality"
       ],
       image: "/images/ventures/retail.jpg",
       link: "#"
@@ -387,8 +457,216 @@ const VenturesList = () => {
                 </VentureFeatures>
                 <LearnMoreButton href={venture.link}>Learn More</LearnMoreButton>
               </VentureContent>
-              <VentureImageContainer>
-                <VentureImage src={venture.image} alt={venture.title} />
+              <VentureImageContainer
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                <AnimatedPattern>
+                  {/* Create different patterns for each venture */}
+                  {index === 0 && (
+                    <>
+                      <GridPattern 
+                        animate={{
+                          opacity: [0.3, 0.5, 0.3],
+                          scale: [1, 1.05, 1],
+                        }}
+                        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+                      <DiamondShape
+                        style={{ top: '10%', left: '20%' }}
+                        animate={{
+                          rotate: [45, 55, 45],
+                          scale: [1, 1.2, 1],
+                          opacity: [0.5, 0.8, 0.5],
+                        }}
+                        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+                      <DiamondShape
+                        style={{ bottom: '15%', right: '25%' }}
+                        animate={{
+                          rotate: [45, 35, 45],
+                          scale: [1, 1.3, 1],
+                          opacity: [0.3, 0.6, 0.3],
+                        }}
+                        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+                      />
+                      <GlowingCircle
+                        style={{ width: '200px', height: '200px', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+                        animate={{
+                          scale: [1, 1.5, 1],
+                          opacity: [0.2, 0.4, 0.2],
+                        }}
+                        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+                      <FloatingLine
+                        style={{ width: '80%', top: '30%', left: '10%' }}
+                        animate={{ opacity: [0.3, 0.7, 0.3], width: ['70%', '80%', '70%'] }}
+                        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+                      <FloatingLine
+                        style={{ width: '60%', bottom: '35%', left: '20%' }}
+                        animate={{ opacity: [0.2, 0.6, 0.2], width: ['50%', '60%', '50%'] }}
+                        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+                      />
+                    </>
+                  )}
+                  {index === 1 && (
+                    <>
+                      <FloatingShape
+                        style={{ width: '250px', height: '250px', top: '20%', right: '10%' }}
+                        animate={{
+                          x: [0, 20, 0],
+                          opacity: [0.3, 0.5, 0.3],
+                          scale: [1, 1.1, 1],
+                        }}
+                        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+                      <FloatingShape
+                        style={{ width: '180px', height: '180px', bottom: '15%', left: '10%' }}
+                        animate={{
+                          x: [0, -15, 0],
+                          y: [0, 15, 0],
+                          opacity: [0.2, 0.4, 0.2],
+                          scale: [1, 1.15, 1],
+                        }}
+                        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+                      />
+                      <DiamondShape
+                        style={{ top: '40%', left: '30%', width: '120px', height: '120px' }}
+                        animate={{
+                          rotate: [45, 60, 45],
+                          scale: [1, 1.2, 1],
+                          opacity: [0.4, 0.7, 0.4],
+                        }}
+                        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+                      <FloatingLine
+                        style={{ width: '90%', top: '60%', left: '5%' }}
+                        animate={{ opacity: [0.3, 0.7, 0.3], y: [0, 10, 0] }}
+                        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+                      <FloatingLine
+                        style={{ width: '70%', top: '30%', left: '15%' }}
+                        animate={{ opacity: [0.2, 0.5, 0.2], y: [0, -10, 0] }}
+                        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+                      />
+                    </>
+                  )}
+                  {index === 2 && (
+                    <>
+                      <GridPattern 
+                        style={{ backgroundSize: '15px 15px', transform: 'rotate(45deg)' }}
+                        animate={{
+                          opacity: [0.2, 0.4, 0.2],
+                          scale: [1, 1.1, 1],
+                        }}
+                        transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+                      <GlowingCircle
+                        style={{ width: '300px', height: '300px', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+                        animate={{
+                          scale: [1, 1.3, 1],
+                          opacity: [0.2, 0.4, 0.2],
+                          borderWidth: ['1px', '2px', '1px'],
+                        }}
+                        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+                      <GlowingCircle
+                        style={{ width: '200px', height: '200px', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+                        animate={{
+                          scale: [1.2, 1, 1.2],
+                          opacity: [0.3, 0.5, 0.3],
+                        }}
+                        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+                      />
+                      <FloatingShape
+                        style={{ width: '180px', height: '180px', top: '20%', left: '15%' }}
+                        animate={{
+                          y: [0, 15, 0],
+                          x: [0, 15, 0],
+                          opacity: [0.3, 0.6, 0.3],
+                          scale: [1, 1.2, 1],
+                        }}
+                        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+                      <FloatingShape
+                        style={{ width: '150px', height: '150px', bottom: '15%', right: '20%' }}
+                        animate={{
+                          y: [0, -20, 0],
+                          opacity: [0.2, 0.5, 0.2],
+                          scale: [1, 1.3, 1],
+                        }}
+                        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+                      />
+                      <FloatingLine
+                        style={{ width: '80%', top: '40%', left: '10%' }}
+                        animate={{ opacity: [0.3, 0.7, 0.3], rotate: [0, 2, 0] }}
+                        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+                    </>
+                  )}
+                  {index === 3 && (
+                    <>
+                      <DiamondShape
+                        style={{ width: '200px', height: '200px', top: '10%', right: '20%' }}
+                        animate={{
+                          rotate: [45, 35, 45],
+                          scale: [1, 1.3, 1],
+                          opacity: [0.3, 0.6, 0.3],
+                        }}
+                        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+                      <DiamondShape
+                        style={{ width: '150px', height: '150px', bottom: '15%', left: '20%' }}
+                        animate={{
+                          rotate: [45, 55, 45],
+                          scale: [1, 1.2, 1],
+                          opacity: [0.2, 0.5, 0.2],
+                        }}
+                        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+                      />
+                      <GlowingCircle
+                        style={{ width: '250px', height: '250px', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+                        animate={{
+                          scale: [1, 1.4, 1],
+                          opacity: [0.2, 0.5, 0.2],
+                        }}
+                        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+                      <FloatingShape
+                        style={{ width: '220px', height: '220px', top: '30%', left: '30%' }}
+                        animate={{
+                          scale: [1, 1.2, 1],
+                          opacity: [0.3, 0.5, 0.3],
+                        }}
+                        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+                      <FloatingLine
+                        style={{ width: '90%', top: '25%', left: '5%' }}
+                        animate={{ opacity: [0.3, 0.6, 0.3], y: [0, 10, 0] }}
+                        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+                      <FloatingLine
+                        style={{ width: '70%', bottom: '30%', left: '15%' }}
+                        animate={{ opacity: [0.2, 0.5, 0.2], y: [0, -5, 0] }}
+                        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+                      />
+                    </>
+                  )}
+                </AnimatedPattern>
+                <VentureIcon
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  viewport={{ once: true }}
+                >
+                  {index === 0 && '✨'}
+                  {index === 1 && '🏗️'}
+                  {index === 2 && '💻'}
+                  {index === 3 && '🛍️'}
+                </VentureIcon>
               </VentureImageContainer>
             </VentureItem>
           ))}

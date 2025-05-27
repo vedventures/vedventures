@@ -5,6 +5,7 @@ import Layout from './components/layout/Layout';
 import HomePage from './components/home/HomePage';
 import AboutPage from './components/about/AboutPage';
 import VenturesPage from './components/ventures/VenturesPage';
+import InsightsPage from './components/insights/InsightsPage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/ventures" element={<VenturesPage />} />
+          <Route path="/insights" element={<InsightsPage />} />
           {/* Additional routes will be added as we develop more pages */}
         </Routes>
       </Layout>

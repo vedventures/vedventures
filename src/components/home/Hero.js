@@ -321,6 +321,7 @@ const ScrollIndicator = styled.div`
   }
 `;
 
+// eslint-disable-next-line no-unused-vars
 // ScrollIcon is used instead of ScrollCircle
 
 const ScrollText = styled.span`

@@ -3,8 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GlobalStyles from './styles/GlobalStyles';
 import Layout from './components/layout/Layout';
 import HomePage from './components/home/HomePage';
+// eslint-disable-next-line no-unused-vars
 import AboutPage from './components/about/AboutPage';
+// eslint-disable-next-line no-unused-vars
 import VenturesPage from './components/ventures/VenturesPage';
+// eslint-disable-next-line no-unused-vars
 import InsightsPage from './components/insights/InsightsPage';
 
 function App() {

@@ -245,7 +245,15 @@ const ArticleImage = styled.img`
   }
 `;
 
-// Animation variants defined inline in the component
+// eslint-disable-next-line no-unused-vars
+const fadeIn = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.6 }
+  }
+};
 
 const InsightsFeatured = () => {
   return (

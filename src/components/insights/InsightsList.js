@@ -287,14 +287,7 @@ const LoadMoreButton = styled(motion.button)`
   }
 `;
 
-const fadeIn = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.6 }
-  }
-};
+// Animation variants defined inline in the component
 
 const staggerContainer = {
   hidden: { opacity: 0 },

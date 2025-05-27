@@ -321,40 +321,7 @@ const ScrollIndicator = styled.div`
   }
 `;
 
-const ScrollCircle = styled.div`
-  position: relative;
-  width: 30px;
-  height: 50px;
-  margin-top: 15px;
-  border: 1px solid rgba(212, 175, 55, 0.5);
-  border-radius: 15px;
-  display: flex;
-  justify-content: center;
-  padding-top: 10px;
-  
-  &:before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: var(--accent);
-    position: absolute;
-    top: 10px;
-  }
-  
-  @media (max-width: 768px) {
-    margin-top: 0;
-    margin-right: 12px;
-    margin-bottom: 0;
-    width: 25px;
-    height: 40px;
-    
-    &:before {
-      width: 5px;
-      height: 5px;
-    }
-  }
-`;
+// ScrollIcon is used instead of ScrollCircle
 
 const ScrollText = styled.span`
   font-size: 0.8rem;

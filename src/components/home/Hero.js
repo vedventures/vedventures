@@ -20,7 +20,7 @@ const HeroSection = styled.section`
   @media (max-width: 768px) {
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 5rem;
+    padding-top: 7rem; /* Increased padding-top for more space on mobile */
     height: auto;
     min-height: 100vh;
   }
@@ -78,7 +78,7 @@ const HeroContent = styled.div`
     padding: 0 1.5rem;
     text-align: center;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 3.5rem; /* Increased top margin for more space on mobile */
     margin-bottom: 2rem;
   }
   

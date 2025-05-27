@@ -288,13 +288,13 @@ const staggerContainer = {
 const VenturesList = () => {
   const ventures = [
     {
-      title: "Web Development",
-      description: "Our web development vertical specializes in creating premium, high-performance websites and web applications that deliver exceptional user experiences.",
+      title: "Next-Gen Marketing & Cognitive Tech",
+      description: "Our flagship vertical combines cutting-edge marketing strategies with AI-powered solutions to deliver transformative digital experiences that drive measurable business growth.",
       features: [
-        "Custom website design and development",
-        "E-commerce solutions",
-        "Progressive web applications",
-        "CMS implementation and optimization"
+        "AI-driven marketing automation",
+        "Custom web development & UX design",
+        "Cognitive analytics & insights",
+        "Conversational AI & chatbot solutions"
       ],
       image: "/images/ventures/web-development.jpg",
       link: "#"

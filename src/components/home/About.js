@@ -16,7 +16,7 @@ const AboutSection = styled.section`
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 15% 50%, rgba(255, 107, 0, 0.03) 0%, transparent 50%);
+    background: radial-gradient(circle at 15% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
     pointer-events: none;
   }
   

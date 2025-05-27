@@ -28,7 +28,7 @@ const FooterContainer = styled.footer`
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 15% 15%, rgba(255, 107, 0, 0.03) 0%, transparent 50%);
+    background: radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
     pointer-events: none;
   }
 `;
@@ -157,7 +157,7 @@ const SocialLink = styled(motion.a)`
   justify-content: center;
   width: 40px;
   height: 40px;
-  border: 1px solid rgba(255, 107, 0, 0.3);
+  border: 1px solid rgba(212, 175, 55, 0.3);
   color: var(--accent);
   transition: all 0.4s ease;
   position: relative;
@@ -180,7 +180,7 @@ const SocialLink = styled(motion.a)`
     color: var(--dark-background);
     border-color: var(--accent);
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(255, 107, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
     
     &:before {
       transform: translateY(0);
@@ -192,7 +192,7 @@ const BottomBar = styled.div`
   max-width: 1400px;
   margin: 6rem auto 0;
   padding: 2rem 2rem 0;
-  border-top: 1px solid rgba(255, 107, 0, 0.1);
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;

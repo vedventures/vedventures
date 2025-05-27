@@ -12,9 +12,9 @@ const NavbarContainer = styled.header`
   padding: 1.5rem 0;
   transition: all 0.4s ease;
   background-color: ${props => props.scrolled ? 'rgba(10, 10, 10, 0.95)' : 'transparent'};
-  box-shadow: ${props => props.scrolled ? '0 4px 20px rgba(0, 0, 0, 0.3), 0 2px 3px rgba(212, 175, 55, 0.1)' : 'none'};
+  box-shadow: ${props => props.scrolled ? '0 4px 20px rgba(0, 0, 0, 0.3), 0 2px 3px var(--border-color)' : 'none'};
   backdrop-filter: ${props => props.scrolled ? 'blur(10px)' : 'none'};
-  border-bottom: ${props => props.scrolled ? '1px solid rgba(212, 175, 55, 0.1)' : 'none'};
+  border-bottom: ${props => props.scrolled ? '1px solid var(--border-color)' : 'none'};
 `;
 
 const NavbarInner = styled.div`
@@ -42,7 +42,7 @@ const Logo = styled(Link)`
     height: 5px;
     background-color: var(--accent);
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    box-shadow: var(--shadow-accent);
   }
 `;
 

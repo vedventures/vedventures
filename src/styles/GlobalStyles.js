@@ -1,24 +1,25 @@
 import { createGlobalStyle } from 'styled-components';
+import theme from './theme';
 
 const GlobalStyles = createGlobalStyle`
   :root {
     /* Color Palette - Luxury Dark Theme */
-    --primary: #0f0f0f;
-    --secondary: #1a1a1a;
-    --accent: #FF6B00; /* Orange from logo */
-    --accent-secondary: #c0c0c0; /* Silver */
-    --text: #e0e0e0;
-    --light-text: #f5f5f5;
-    --muted-text: #a0a0a0;
-    --background: #0a0a0a;
-    --light-background: #151515;
-    --dark-background: #050505;
-    --card-background: rgba(25, 25, 25, 0.8);
-    --overlay: rgba(0, 0, 0, 0.7);
+    --primary: ${theme.colors.primary};
+    --secondary: ${theme.colors.secondary};
+    --accent: ${theme.colors.accent}; /* Premium gold */
+    --accent-secondary: ${theme.colors.accentSecondary}; /* Light gold */
+    --text: ${theme.colors.text};
+    --light-text: ${theme.colors.lightText};
+    --muted-text: ${theme.colors.mutedText};
+    --background: ${theme.colors.background};
+    --light-background: ${theme.colors.lightBackground};
+    --dark-background: ${theme.colors.darkBackground};
+    --card-background: ${theme.colors.cardBackground};
+    --overlay: ${theme.colors.overlay};
     
     /* Typography */
-    --heading-font: 'Playfair Display', serif;
-    --body-font: 'Raleway', sans-serif;
+    --heading-font: ${theme.fonts.heading};
+    --body-font: ${theme.fonts.body};
     
     /* Spacing */
     --spacing-xs: 0.25rem;
@@ -28,19 +29,24 @@ const GlobalStyles = createGlobalStyle`
     --spacing-xl: 4rem;
     
     /* Borders */
-    --border-radius: 4px;
-    --border-color: rgba(212, 175, 55, 0.3); /* Subtle gold */
+    --border-radius: ${theme.borderRadius};
+    --border-color: ${theme.colors.borderColor}; /* Subtle gold */
     
     /* Shadows */
-    --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 10px 15px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 15px 30px rgba(0, 0, 0, 0.1);
-    --shadow-gold: 0 5px 15px rgba(212, 175, 55, 0.15);
+    --shadow-sm: ${theme.shadows.small};
+    --shadow-md: ${theme.shadows.medium};
+    --shadow-lg: ${theme.shadows.large};
+    --shadow-gold: ${theme.shadows.gold};
+    --shadow-accent: ${theme.shadows.accentGlow};
     
     /* Transitions */
-    --transition-slow: 0.5s ease;
-    --transition-medium: 0.3s ease;
-    --transition-fast: 0.1s ease;
+    --transition-slow: ${theme.transitions.slow};
+    --transition-medium: ${theme.transitions.medium};
+    --transition-fast: ${theme.transitions.fast};
+    
+    /* Gradients */
+    --gradient-gold-radial: ${theme.gradients.goldRadial};
+    --gradient-gold-linear: ${theme.gradients.goldLinear};
   }
   
   * {

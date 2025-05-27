@@ -259,7 +259,7 @@ const Navbar = () => {
     <NavbarContainer scrolled={scrolled}>
       <NavbarInner>
         <Logo to="/" scrolled={scrolled}>
-          <LogoImage src="/logov.png" alt="Vedanta Ventures" scrolled={scrolled} />
+          <LogoImage src={process.env.PUBLIC_URL + '/logov.png'} alt="Vedanta Ventures" scrolled={scrolled} />
         </Logo>
         
         <NavLinks>

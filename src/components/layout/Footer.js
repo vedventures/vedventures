@@ -262,7 +262,7 @@ const Footer = () => {
       <FooterContent>
         <FooterColumn>
           <FooterLogo to="/">
-            <FooterLogoImage src="/logov.png" alt="Vedanta Ventures" />
+            <FooterLogoImage src={process.env.PUBLIC_URL + '/logov.png'} alt="Vedanta Ventures" />
           </FooterLogo>
           <FooterDescription>
             Cultivating extraordinary experiences through meticulous attention to detail and unwavering commitment to sophistication across diverse industries.

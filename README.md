@@ -1,6 +1,10 @@
 # Vedanta Ventures - Premium Business Website
 
-A sophisticated, luxury-themed website for Vedanta Ventures, featuring a premium dark design with orange accents that reflect the brand's commitment to excellence and innovation.
+A sophisticated, luxury-themed website for Vedanta Ventures, featuring a premium dark design with gold accents that reflect the brand's commitment to excellence and innovation across multiple business verticals including Next-Gen Marketing & Cognitive Tech, Construction, Digital Products, and Retail.
+
+## Deployment
+
+This website is automatically deployed to Vercel when changes are pushed to the master branch.
 
 ## Available Scripts
 

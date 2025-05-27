@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Vedanta Ventures - Premium Business Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A sophisticated, luxury-themed website for Vedanta Ventures, featuring a premium dark design with orange accents that reflect the brand's commitment to excellence and innovation.
 
 ## Available Scripts
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { motion, useInView } from 'framer-motion';
 import { aboutImage } from '../../assets/images/placeholders';
@@ -36,6 +36,12 @@ const AboutContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+`;
+
+const ContentRow = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5rem;
@@ -48,8 +54,18 @@ const AboutContainer = styled.div`
 `;
 
 const AboutContent = styled.div`
+  width: 100%;
+`;
+
+const StatsRow = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  margin-top: 2rem;
+  
   @media (max-width: 992px) {
-    order: 2;
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
 `;
 
@@ -104,38 +120,75 @@ const AboutText = styled(motion.p)`
 
 const AboutStats = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem;
-  margin-top: 4rem;
+  grid-template-columns: 1fr;
+  gap: 3rem;
   position: relative;
+  padding: 3rem 0;
   
-  &:before {
+  &:before, &:after {
     content: '';
     position: absolute;
-    top: -2rem;
     left: 0;
-    width: 50px;
+    width: 100%;
     height: 1px;
     background: linear-gradient(90deg, var(--accent), transparent);
+  }
+  
+  &:before {
+    top: 0;
+  }
+  
+  &:after {
+    bottom: 0;
+    transform: rotate(180deg);
   }
 `;
 
 const StatItem = styled(motion.div)`
   display: flex;
   flex-direction: column;
+  position: relative;
+  padding-left: 2rem;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.8rem;
+    width: 3px;
+    height: 2.5rem;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+  
+  &:hover {
+    transform: translateX(5px);
+    transition: transform 0.3s ease;
+  }
 `;
 
 const StatNumber = styled.span`
-  font-size: 3.5rem;
+  font-size: 4rem;
   font-weight: 700;
-  color: var(--accent);
   line-height: 1;
   margin-bottom: 0.8rem;
   font-family: var(--heading-font);
-  background: linear-gradient(to right, var(--accent) 0%, var(--accent-secondary) 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
+  position: relative;
+  letter-spacing: -0.02em;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0.2rem;
+    left: 0;
+    width: 2rem;
+    height: 1px;
+    background-color: var(--accent);
+    opacity: 0.5;
+  }
 `;
 
 const StatLabel = styled.span`
@@ -143,7 +196,46 @@ const StatLabel = styled.span`
   color: var(--light-text);
   text-transform: uppercase;
   letter-spacing: 2px;
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 0.5rem;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--accent);
+    transition: width 0.3s ease;
+  }
+  
+  ${StatItem}:hover &:after {
+    width: 100%;
+  }
+`;
+
+const StatDescription = styled.p`
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--muted-text);
   font-weight: 300;
+  max-width: 95%;
+  position: relative;
+  padding-top: 0.5rem;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 15px;
+    height: 1px;
+    background-color: rgba(246, 135, 18, 0.3);
+  }
 `;
 
 const AboutImageWrapper = styled(motion.div)`
@@ -219,58 +311,77 @@ const About = () => {
   return (
     <AboutSection id="about">
       <AboutContainer ref={ref}>
+        <ContentRow>
+          <AboutContent
+            as={motion.div}
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            <SectionSubtitle variants={itemVariants}>The Essence</SectionSubtitle>
+            <SectionTitle variants={itemVariants}>
+              Crafting <span>Extraordinary</span> Experiences
+            </SectionTitle>
+            <AboutText variants={itemVariants}>
+              VEDANTA VENTURES embodies the perfect fusion of visionary leadership and meticulous execution. 
+              We cultivate excellence across diverse industries, creating bespoke solutions that transcend 
+              conventional boundaries. Our philosophy is rooted in the pursuit of perfection, where every 
+              detail reflects our unwavering commitment to sophistication.
+            </AboutText>
+          </AboutContent>
+          
+          <AboutImageWrapper
+            as={motion.div}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
+            <AboutImage src={aboutImage} alt="Vedanta Ventures Office" />
+            <AboutAccent className="top-left" />
+            <AboutAccent className="bottom-right" />
+          </AboutImageWrapper>
+        </ContentRow>
+        
         <AboutContent
           as={motion.div}
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <SectionSubtitle variants={itemVariants}>The Essence</SectionSubtitle>
-          <SectionTitle variants={itemVariants}>
-            Crafting <span>Extraordinary</span> Experiences
-          </SectionTitle>
-          <AboutText variants={itemVariants}>
-            VEDANTA VENTURES embodies the perfect fusion of visionary leadership and meticulous execution. 
-            We cultivate excellence across diverse industries, creating bespoke solutions that transcend 
-            conventional boundaries. Our philosophy is rooted in the pursuit of perfection, where every 
-            detail reflects our unwavering commitment to sophistication.
-          </AboutText>
           <AboutText variants={itemVariants}>
             With a portfolio spanning premium digital solutions, architectural materials, curated e-commerce, 
             and immersive retail experiences, we transform ordinary interactions into extraordinary moments. 
             Each venture is a carefully orchestrated symphony of innovation, elegance, and purpose.
           </AboutText>
           
-          <AboutStats variants={containerVariants}>
-            <StatItem variants={itemVariants}>
-              <StatNumber>10+</StatNumber>
-              <StatLabel>Years of Excellence</StatLabel>
-            </StatItem>
-            <StatItem variants={itemVariants}>
-              <StatNumber>4</StatNumber>
-              <StatLabel>Industry Verticals</StatLabel>
-            </StatItem>
-            <StatItem variants={itemVariants}>
-              <StatNumber>100+</StatNumber>
-              <StatLabel>Successful Projects</StatLabel>
-            </StatItem>
-            <StatItem variants={itemVariants}>
-              <StatNumber>50+</StatNumber>
-              <StatLabel>Expert Professionals</StatLabel>
-            </StatItem>
-          </AboutStats>
+          <StatsRow>
+            <AboutStats variants={containerVariants}>
+              <StatItem variants={itemVariants}>
+                <StatNumber>4</StatNumber>
+                <StatLabel>Business Verticals</StatLabel>
+                <StatDescription>Strategically built across Digital, Commerce, Materials & Retail</StatDescription>
+              </StatItem>
+              <StatItem variants={itemVariants}>
+                <StatNumber>100+</StatNumber>
+                <StatLabel>Deliverables Deployed</StatLabel>
+                <StatDescription>Across digital campaigns, product launches, and supply operations</StatDescription>
+              </StatItem>
+            </AboutStats>
+            
+            <AboutStats variants={containerVariants}>
+              <StatItem variants={itemVariants}>
+                <StatNumber>50+</StatNumber>
+                <StatLabel>Collaborators & Experts</StatLabel>
+                <StatDescription>Across design, tech, trade, logistics & growth strategy</StatDescription>
+              </StatItem>
+              <StatItem variants={itemVariants}>
+                <StatNumber>1</StatNumber>
+                <StatLabel>Unified Vision</StatLabel>
+                <StatDescription>To quietly build bold ventures — designed for the long term</StatDescription>
+              </StatItem>
+            </AboutStats>
+          </StatsRow>
         </AboutContent>
-        
-        <AboutImageWrapper
-          as={motion.div}
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        >
-          <AboutImage src={aboutImage} alt="Vedanta Ventures Office" />
-          <AboutAccent className="top-left" />
-          <AboutAccent className="bottom-right" />
-        </AboutImageWrapper>
       </AboutContainer>
     </AboutSection>
   );

@@ -418,7 +418,6 @@ const Navbar = () => {
           <NavLink to="/" scrolled={scrolled}>Home</NavLink>
           <NavLink to="/about" scrolled={scrolled}>About</NavLink>
           <NavLink to="/ventures" scrolled={scrolled}>Ventures</NavLink>
-          <NavLink to="/insights" scrolled={scrolled}>Insights</NavLink>
           <NavLink to="/contact" scrolled={scrolled}>Contact</NavLink>
         </NavLinks>
         
@@ -505,14 +504,7 @@ const Navbar = () => {
                       >
                         <i className="fas fa-briefcase" style={{ marginRight: '12px', fontSize: '0.9rem' }}></i> Ventures
                       </MobileNavLink>
-                      <MobileNavLink 
-                        to="/insights" 
-                        onClick={() => setMobileMenuOpen(false)}
-                        variants={linkVariants}
-                        whileHover={{ x: 5 }}
-                      >
-                        <i className="fas fa-lightbulb" style={{ marginRight: '12px', fontSize: '0.9rem' }}></i> Insights
-                      </MobileNavLink>
+
                       <MobileNavLink 
                         to="/contact" 
                         onClick={() => setMobileMenuOpen(false)}

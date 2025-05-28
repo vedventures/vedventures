@@ -9,8 +9,7 @@ import HomePage from './components/home/HomePage';
 import AboutPage from './components/about/AboutPage';
 // eslint-disable-next-line no-unused-vars
 import VenturesPage from './components/ventures/VenturesPage';
-// eslint-disable-next-line no-unused-vars
-import InsightsPage from './components/insights/InsightsPage';
+// Insights page removed as requested
 import TermsPage from './components/legal/TermsPage';
 import PrivacyPage from './components/legal/PrivacyPage';
 import ContactPage from './components/contact/ContactPage';
@@ -25,7 +24,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/ventures" element={<VenturesPage />} />
-            <Route path="/insights" element={<InsightsPage />} />
+            {/* Insights page route removed */}
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/terms" element={<TermsPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />

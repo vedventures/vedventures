@@ -8,7 +8,7 @@ const NavbarContainer = styled.header`
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 990;
   padding: 1.5rem 0;
   transition: all 0.4s ease;
   background-color: ${props => props.scrolled ? 'rgba(10, 10, 10, 0.95)' : 'transparent'};
@@ -27,7 +27,7 @@ const NavbarInner = styled.div`
 `;
 
 const Logo = styled(Link)`
-  z-index: 1001;
+  z-index: 990;
   position: relative;
   display: flex;
   align-items: center;
@@ -101,7 +101,7 @@ const MobileMenuButton = styled.button`
   color: ${props => props.scrolled ? 'var(--light-text)' : 'var(--light-text)'};
   font-size: 1.2rem;
   cursor: pointer;
-  z-index: 1001;
+  z-index: 1200;
   width: 45px;
   height: 45px;
   position: relative;
@@ -150,7 +150,7 @@ const MobileMenu = styled(motion.div)`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  z-index: 1000;
+  z-index: 1100;
   backdrop-filter: blur(15px);
   overflow: hidden;
   box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
@@ -271,7 +271,7 @@ const Overlay = styled(motion.div)`
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
-  z-index: 999;
+  z-index: 1050;
   backdrop-filter: blur(5px);
 `;
 

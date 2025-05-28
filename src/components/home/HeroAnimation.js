@@ -16,8 +16,9 @@ const AnimationContainer = styled.div`
   
   @media (max-width: 768px) {
     width: 100%;
-    height: 40vh;
-    margin-bottom: 2rem;
+    height: 35vh;
+    margin-bottom: 1.5rem;
+    transform: scale(0.85);
   }
 `;
 
@@ -32,8 +33,9 @@ const AnimationWrapper = styled.div`
   justify-content: center;
   
   @media (max-width: 768px) {
-    width: 300px;
-    height: 300px;
+    width: 260px;
+    height: 260px;
+    max-height: 90%;
   }
 `;
 
@@ -71,8 +73,16 @@ const GoldenFrame = styled(motion.div)`
   }
   
   @media (max-width: 768px) {
-    width: 280px;
-    height: 280px;
+    width: 220px;
+    height: 220px;
+    border-width: 1px;
+    
+    &:before {
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+    }
   }
 `;
 
@@ -143,9 +153,18 @@ const BusinessVertical = styled(motion.div)`
   }
   
   @media (max-width: 768px) {
-    width: 120px;
-    height: 120px;
-    padding: 1rem;
+    width: 90px;
+    height: 90px;
+    padding: 0.5rem;
+    border-width: 1px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 10px rgba(212, 175, 55, 0.1) inset;
+    
+    &:before {
+      top: 3px;
+      left: 3px;
+      right: 3px;
+      bottom: 3px;
+    }
   }
 `;
 
@@ -219,11 +238,19 @@ const CenterLogo = styled(motion.div)`
   }
   
   @media (max-width: 768px) {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
+    border-width: 1px;
+    
+    &:before {
+      top: 3px;
+      left: 3px;
+      right: 3px;
+      bottom: 3px;
+    }
     
     img {
-      width: 50px;
+      width: 40px;
     }
   }
 `;
@@ -370,18 +397,33 @@ const HeroAnimation = () => {
   
   // Helper function to get position based on vertical position property
   const getPosition = (position) => {
-    switch(position) {
-      case 'top':
-        return { top: '0', left: '50%', transform: 'translateX(-50%)' };
-      case 'right':
-        return { top: '50%', right: '0', transform: 'translateY(-50%)' };
-      case 'bottom':
-        return { bottom: '0', left: '50%', transform: 'translateX(-50%)' };
-      case 'left':
-        return { top: '50%', left: '0', transform: 'translateY(-50%)' };
-      default:
-        return {};
+    // Base positions
+    const positions = {
+      top: { top: '0', left: '50%', transform: 'translateX(-50%)' },
+      right: { top: '50%', right: '0', transform: 'translateY(-50%)' },
+      bottom: { bottom: '0', left: '50%', transform: 'translateX(-50%)' },
+      left: { top: '50%', left: '0', transform: 'translateY(-50%)' }
+    };
+    
+    // Adjust for mobile
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      // Move elements closer to the center on mobile
+      switch(position) {
+        case 'top':
+          return { top: '5%', left: '50%', transform: 'translateX(-50%)' };
+        case 'right':
+          return { top: '50%', right: '5%', transform: 'translateY(-50%)' };
+        case 'bottom':
+          return { bottom: '5%', left: '50%', transform: 'translateX(-50%)' };
+        case 'left':
+          return { top: '50%', left: '5%', transform: 'translateY(-50%)' };
+        default:
+          return {};
+      }
     }
+    
+    return positions[position] || {};
   };
   
   return (

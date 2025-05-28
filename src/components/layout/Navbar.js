@@ -102,8 +102,8 @@ const MobileMenuButton = styled.button`
   font-size: 1.2rem;
   cursor: pointer;
   z-index: 1001;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   position: relative;
   transition: all 0.3s ease;
   
@@ -121,6 +121,7 @@ const MobileMenuButton = styled.button`
     border: 1px solid var(--accent);
     opacity: 0;
     transition: all 0.3s ease;
+    border-radius: 50%;
   }
   
   &:hover:before {
@@ -144,13 +145,14 @@ const MobileMenu = styled(motion.div)`
   right: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgba(10, 10, 10, 0.98);
+  background-color: rgba(10, 10, 10, 0.95);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px);
+  overflow: hidden;
   
   &:before {
     content: '';
@@ -159,7 +161,18 @@ const MobileMenu = styled(motion.div)`
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at center, rgba(212, 175, 55, 0.03) 0%, transparent 70%);
+    background: radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 70% 70%, rgba(212, 175, 55, 0.05) 0%, transparent 60%);
     pointer-events: none;
   }
 `;
@@ -167,11 +180,37 @@ const MobileMenu = styled(motion.div)`
 const MobileNavLinks = styled.nav`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.5rem;
   text-align: center;
+  position: relative;
+  padding: 3rem;
+  width: 100%;
+  max-width: 400px;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+  
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
 `;
 
-const MobileNavLink = styled(Link)`
+const MobileNavLink = styled(motion(Link))`
   font-size: 1.5rem;
   font-weight: 400;
   color: var(--light-text);
@@ -181,7 +220,11 @@ const MobileNavLink = styled(Link)`
   margin: 0.8rem 0;
   position: relative;
   transition: all 0.3s ease;
-  padding: 0.5rem 1.5rem;
+  padding: 0.8rem 2rem;
+  display: inline-block;
+  background: linear-gradient(90deg, transparent, rgba(10, 10, 10, 0.3), transparent);
+  border-radius: 2px;
+  overflow: hidden;
   
   &:before, &:after {
     content: '';
@@ -205,6 +248,7 @@ const MobileNavLink = styled(Link)`
   &:hover {
     color: var(--accent);
     transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     
     &:before, &:after {
       width: 100%;
@@ -215,21 +259,82 @@ const MobileNavLink = styled(Link)`
 const menuVariants = {
   closed: {
     x: '100%',
+    opacity: 0,
     transition: {
       type: 'spring',
       stiffness: 400,
-      damping: 40
+      damping: 40,
+      staggerChildren: 0.05,
+      staggerDirection: -1
     }
   },
   open: {
     x: 0,
+    opacity: 1,
     transition: {
       type: 'spring',
       stiffness: 400,
-      damping: 40
+      damping: 40,
+      staggerChildren: 0.1,
+      delayChildren: 0.2
     }
   }
 };
+
+const linkVariants = {
+  closed: {
+    y: 20,
+    opacity: 0
+  },
+  open: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: 'spring',
+      stiffness: 300,
+      damping: 30
+    }
+  }
+};
+
+const DecorativeCircle = styled(motion.div)`
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  pointer-events: none;
+`;
+
+const LogoContainer = styled(motion.div)`
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.1;
+`;
+
+const SocialLinks = styled(motion.div)`
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 3rem;
+`;
+
+const SocialLink = styled(motion.a)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 50%;
+  color: var(--accent);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: var(--accent);
+    color: var(--dark-background);
+    transform: translateY(-3px);
+  }
+`;
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -286,12 +391,106 @@ const Navbar = () => {
               exit="closed"
               variants={menuVariants}
             >
+              <DecorativeCircle 
+                style={{ width: '300px', height: '300px', top: '20%', left: '10%' }}
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.1, 0.15, 0.1],
+                }}
+                transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+              />
+              <DecorativeCircle 
+                style={{ width: '200px', height: '200px', bottom: '15%', right: '10%' }}
+                animate={{
+                  scale: [1, 1.1, 1],
+                  opacity: [0.1, 0.2, 0.1],
+                }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+              />
+              
+              <LogoContainer
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 0.1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+              >
+                <img src={process.env.PUBLIC_URL + '/logov.png'} alt="Vedanta Ventures" width="120" />
+              </LogoContainer>
+              
               <MobileNavLinks>
-                <MobileNavLink to="/" onClick={() => setMobileMenuOpen(false)}>Home</MobileNavLink>
-                <MobileNavLink to="/about" onClick={() => setMobileMenuOpen(false)}>About</MobileNavLink>
-                <MobileNavLink to="/ventures" onClick={() => setMobileMenuOpen(false)}>Ventures</MobileNavLink>
-                <MobileNavLink to="/insights" onClick={() => setMobileMenuOpen(false)}>Insights</MobileNavLink>
-                <MobileNavLink to="/contact" onClick={() => setMobileMenuOpen(false)}>Contact</MobileNavLink>
+                <MobileNavLink 
+                  to="/" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  variants={linkVariants}
+                  whileHover={{ x: 5 }}
+                >
+                  Home
+                </MobileNavLink>
+                <MobileNavLink 
+                  to="/about" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  variants={linkVariants}
+                  whileHover={{ x: 5 }}
+                >
+                  About
+                </MobileNavLink>
+                <MobileNavLink 
+                  to="/ventures" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  variants={linkVariants}
+                  whileHover={{ x: 5 }}
+                >
+                  Ventures
+                </MobileNavLink>
+                <MobileNavLink 
+                  to="/insights" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  variants={linkVariants}
+                  whileHover={{ x: 5 }}
+                >
+                  Insights
+                </MobileNavLink>
+                <MobileNavLink 
+                  to="/contact" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  variants={linkVariants}
+                  whileHover={{ x: 5 }}
+                >
+                  Contact
+                </MobileNavLink>
+                
+                <SocialLinks
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8, duration: 0.5 }}
+                >
+                  <SocialLink 
+                    href="https://linkedin.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    whileHover={{ y: -3 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <i className="fab fa-linkedin-in"></i>
+                  </SocialLink>
+                  <SocialLink 
+                    href="https://twitter.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    whileHover={{ y: -3 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <i className="fab fa-twitter"></i>
+                  </SocialLink>
+                  <SocialLink 
+                    href="https://instagram.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    whileHover={{ y: -3 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <i className="fab fa-instagram"></i>
+                  </SocialLink>
+                </SocialLinks>
               </MobileNavLinks>
             </MobileMenu>
           )}

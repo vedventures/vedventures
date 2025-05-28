@@ -155,7 +155,7 @@ const MobileMenu = styled(motion.div)`
   overflow: hidden;
   box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
   border-left: 1px solid rgba(212, 175, 55, 0.1);
-  padding-top: 6rem;
+  padding-top: 5rem;
   
   &:before {
     content: '';
@@ -183,11 +183,13 @@ const MobileMenu = styled(motion.div)`
 const MobileNavLinks = styled.nav`
   display: flex;
   flex-direction: column;
-  gap: 1.8rem;
+  gap: 1rem;
   text-align: left;
   position: relative;
-  padding: 2rem;
+  padding: 1.5rem;
   width: 100%;
+  height: 100%;
+  overflow-y: auto;
   
   &:before {
     content: '';
@@ -314,7 +316,7 @@ const DecorativeCircle = styled(motion.div)`
 `;
 
 const MenuSection = styled.div`
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   width: 100%;
 `;
 
@@ -328,11 +330,11 @@ const MenuSectionTitle = styled.h4`
 `;
 
 const ContactInfo = styled.div`
-  margin-top: 2rem;
-  padding: 1.5rem;
-  font-size: 0.85rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  font-size: 0.8rem;
   color: var(--muted-text);
-  line-height: 1.6;
+  line-height: 1.5;
   
   strong {
     color: var(--accent);
@@ -470,140 +472,162 @@ const Navbar = () => {
                 </LogoContainer>
                 
                 <MobileNavLinks>
-                  <MenuSectionTitle>Navigation</MenuSectionTitle>
-                  <Divider 
-                    initial={{ width: 0 }}
-                    animate={{ width: '90%' }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                  />
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    <MenuSectionTitle>Navigation</MenuSectionTitle>
+                    <Divider 
+                      initial={{ width: 0 }}
+                      animate={{ width: '90%' }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                    />
+                    
+                    <MenuSection>
+                      <MobileNavLink 
+                        to="/" 
+                        onClick={() => setMobileMenuOpen(false)}
+                        variants={linkVariants}
+                        whileHover={{ x: 5 }}
+                      >
+                        <i className="fas fa-home" style={{ marginRight: '12px', fontSize: '0.9rem' }}></i> Home
+                      </MobileNavLink>
+                      <MobileNavLink 
+                        to="/about" 
+                        onClick={() => setMobileMenuOpen(false)}
+                        variants={linkVariants}
+                        whileHover={{ x: 5 }}
+                      >
+                        <i className="fas fa-info-circle" style={{ marginRight: '12px', fontSize: '0.9rem' }}></i> About
+                      </MobileNavLink>
+                      <MobileNavLink 
+                        to="/ventures" 
+                        onClick={() => setMobileMenuOpen(false)}
+                        variants={linkVariants}
+                        whileHover={{ x: 5 }}
+                      >
+                        <i className="fas fa-briefcase" style={{ marginRight: '12px', fontSize: '0.9rem' }}></i> Ventures
+                      </MobileNavLink>
+                      <MobileNavLink 
+                        to="/insights" 
+                        onClick={() => setMobileMenuOpen(false)}
+                        variants={linkVariants}
+                        whileHover={{ x: 5 }}
+                      >
+                        <i className="fas fa-lightbulb" style={{ marginRight: '12px', fontSize: '0.9rem' }}></i> Insights
+                      </MobileNavLink>
+                      <MobileNavLink 
+                        to="/contact" 
+                        onClick={() => setMobileMenuOpen(false)}
+                        variants={linkVariants}
+                        whileHover={{ x: 5 }}
+                      >
+                        <i className="fas fa-envelope" style={{ marginRight: '12px', fontSize: '0.9rem' }}></i> Contact
+                      </MobileNavLink>
+                    </MenuSection>
+                  </div>
                   
-                  <MenuSection>
-                    <MobileNavLink 
-                      to="/" 
-                      onClick={() => setMobileMenuOpen(false)}
-                      variants={linkVariants}
-                      whileHover={{ x: 5 }}
-                    >
-                      <i className="fas fa-home" style={{ marginRight: '12px', fontSize: '0.9rem' }}></i> Home
-                    </MobileNavLink>
-                    <MobileNavLink 
-                      to="/about" 
-                      onClick={() => setMobileMenuOpen(false)}
-                      variants={linkVariants}
-                      whileHover={{ x: 5 }}
-                    >
-                      <i className="fas fa-info-circle" style={{ marginRight: '12px', fontSize: '0.9rem' }}></i> About
-                    </MobileNavLink>
-                    <MobileNavLink 
-                      to="/ventures" 
-                      onClick={() => setMobileMenuOpen(false)}
-                      variants={linkVariants}
-                      whileHover={{ x: 5 }}
-                    >
-                      <i className="fas fa-briefcase" style={{ marginRight: '12px', fontSize: '0.9rem' }}></i> Ventures
-                    </MobileNavLink>
-                    <MobileNavLink 
-                      to="/insights" 
-                      onClick={() => setMobileMenuOpen(false)}
-                      variants={linkVariants}
-                      whileHover={{ x: 5 }}
-                    >
-                      <i className="fas fa-lightbulb" style={{ marginRight: '12px', fontSize: '0.9rem' }}></i> Insights
-                    </MobileNavLink>
-                    <MobileNavLink 
-                      to="/contact" 
-                      onClick={() => setMobileMenuOpen(false)}
-                      variants={linkVariants}
-                      whileHover={{ x: 5 }}
-                    >
-                      <i className="fas fa-envelope" style={{ marginRight: '12px', fontSize: '0.9rem' }}></i> Contact
-                    </MobileNavLink>
-                  </MenuSection>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    <MenuSectionTitle>Legal</MenuSectionTitle>
+                    <Divider 
+                      initial={{ width: 0 }}
+                      animate={{ width: '90%' }}
+                      transition={{ duration: 0.5, delay: 0.4 }}
+                    />
+                    
+                    <MenuSection>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0 0.5rem' }}>
+                        <MobileNavLink 
+                          to="/privacy" 
+                          onClick={() => setMobileMenuOpen(false)}
+                          variants={linkVariants}
+                          whileHover={{ x: 5 }}
+                          style={{ 
+                            fontSize: '0.9rem', 
+                            padding: '0.6rem 0.8rem',
+                            letterSpacing: '1px',
+                            flex: '1 1 auto',
+                            marginRight: '0.5rem'
+                          }}
+                        >
+                          <i className="fas fa-shield-alt" style={{ marginRight: '8px', fontSize: '0.8rem' }}></i> Privacy
+                        </MobileNavLink>
+                        <MobileNavLink 
+                          to="/terms" 
+                          onClick={() => setMobileMenuOpen(false)}
+                          variants={linkVariants}
+                          whileHover={{ x: 5 }}
+                          style={{ 
+                            fontSize: '0.9rem', 
+                            padding: '0.6rem 0.8rem',
+                            letterSpacing: '1px',
+                            flex: '1 1 auto',
+                            marginLeft: '0.5rem'
+                          }}
+                        >
+                          <i className="fas fa-file-contract" style={{ marginRight: '8px', fontSize: '0.8rem' }}></i> Terms
+                        </MobileNavLink>
+                      </div>
+                    </MenuSection>
+                  </div>
                   
-                  <MenuSectionTitle>Legal</MenuSectionTitle>
-                  <Divider 
-                    initial={{ width: 0 }}
-                    animate={{ width: '90%' }}
-                    transition={{ duration: 0.5, delay: 0.4 }}
-                  />
-                  
-                  <MenuSection>
-                    <MobileNavLink 
-                      to="/privacy" 
-                      onClick={() => setMobileMenuOpen(false)}
-                      variants={linkVariants}
-                      whileHover={{ x: 5 }}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: 'auto' }}>
+                    <MenuSectionTitle>Connect</MenuSectionTitle>
+                    <Divider 
+                      initial={{ width: 0 }}
+                      animate={{ width: '90%' }}
+                      transition={{ duration: 0.5, delay: 0.6 }}
+                    />
+                    
+                    <SocialLinks
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.7, duration: 0.5 }}
                     >
-                      <i className="fas fa-shield-alt" style={{ marginRight: '12px', fontSize: '0.9rem' }}></i> Privacy Policy
-                    </MobileNavLink>
-                    <MobileNavLink 
-                      to="/terms" 
-                      onClick={() => setMobileMenuOpen(false)}
-                      variants={linkVariants}
-                      whileHover={{ x: 5 }}
-                    >
-                      <i className="fas fa-file-contract" style={{ marginRight: '12px', fontSize: '0.9rem' }}></i> Terms of Service
-                    </MobileNavLink>
-                  </MenuSection>
-                  
-                  <MenuSectionTitle>Connect</MenuSectionTitle>
-                  <Divider 
-                    initial={{ width: 0 }}
-                    animate={{ width: '90%' }}
-                    transition={{ duration: 0.5, delay: 0.6 }}
-                  />
-                  
-                  <SocialLinks
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.7, duration: 0.5 }}
-                  >
-                    <SocialLink 
-                      href="https://linkedin.com" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      whileHover={{ y: -3 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <i className="fab fa-linkedin-in"></i>
-                    </SocialLink>
-                    <SocialLink 
-                      href="https://twitter.com" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      whileHover={{ y: -3 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <i className="fab fa-twitter"></i>
-                    </SocialLink>
-                    <SocialLink 
-                      href="https://instagram.com" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      whileHover={{ y: -3 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <i className="fab fa-instagram"></i>
-                    </SocialLink>
-                    <SocialLink 
-                      href="https://facebook.com" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      whileHover={{ y: -3 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <i className="fab fa-facebook-f"></i>
-                    </SocialLink>
-                  </SocialLinks>
-                  
-                  <ContactInfo>
-                    <strong>Vedanta Ventures</strong><br />
-                    #17, 2nd Floor, 7th Main Road<br />
-                    2nd Stage, Indiranagar<br />
-                    Bengaluru - 560038<br /><br />
-                    <strong>Email:</strong> vedantaventures1@gmail.com<br />
-                    <strong>Phone:</strong> +91 9979972714
-                  </ContactInfo>
+                      <SocialLink 
+                        href="https://linkedin.com" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        whileHover={{ y: -3 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <i className="fab fa-linkedin-in"></i>
+                      </SocialLink>
+                      <SocialLink 
+                        href="https://twitter.com" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        whileHover={{ y: -3 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <i className="fab fa-twitter"></i>
+                      </SocialLink>
+                      <SocialLink 
+                        href="https://instagram.com" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        whileHover={{ y: -3 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <i className="fab fa-instagram"></i>
+                      </SocialLink>
+                      <SocialLink 
+                        href="https://facebook.com" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        whileHover={{ y: -3 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <i className="fab fa-facebook-f"></i>
+                      </SocialLink>
+                    </SocialLinks>
+                    
+                    <ContactInfo>
+                      <strong>Vedanta Ventures</strong><br />
+                      #17, 2nd Floor, 7th Main Road<br />
+                      2nd Stage, Indiranagar<br />
+                      Bengaluru - 560038<br />
+                      <strong>Email:</strong> vedantaventures1@gmail.com<br />
+                      <strong>Phone:</strong> +91 9979972714
+                    </ContactInfo>
+                  </div>
                 </MobileNavLinks>
               </MobileMenu>
             </>

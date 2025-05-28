@@ -143,16 +143,19 @@ const MobileMenu = styled(motion.div)`
   position: fixed;
   top: 0;
   right: 0;
-  width: 100%;
+  width: 75%; /* Cover 3/4 of the screen width */
   height: 100vh;
-  background-color: rgba(10, 10, 10, 0.95);
+  background-color: rgba(15, 15, 15, 0.98);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   z-index: 1000;
   backdrop-filter: blur(15px);
   overflow: hidden;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  border-left: 1px solid rgba(212, 175, 55, 0.1);
+  padding-top: 6rem;
   
   &:before {
     content: '';
@@ -180,78 +183,57 @@ const MobileMenu = styled(motion.div)`
 const MobileNavLinks = styled.nav`
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
-  text-align: center;
+  gap: 1.8rem;
+  text-align: left;
   position: relative;
-  padding: 3rem;
+  padding: 2rem;
   width: 100%;
-  max-width: 400px;
   
   &:before {
     content: '';
     position: absolute;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 2rem;
     width: 50px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  }
-  
-  &:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
   }
 `;
 
 const MobileNavLink = styled(motion(Link))`
-  font-size: 1.5rem;
-  font-weight: 400;
+  font-size: 1.2rem;
+  font-weight: 500;
   color: var(--light-text);
   text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: 3px;
-  margin: 0.8rem 0;
+  letter-spacing: 2px;
+  margin: 0.5rem 0;
   position: relative;
   transition: all 0.3s ease;
-  padding: 0.8rem 2rem;
-  display: inline-block;
-  background: linear-gradient(90deg, transparent, rgba(10, 10, 10, 0.3), transparent);
-  border-radius: 2px;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
   overflow: hidden;
   
-  &:before, &:after {
+  &:before {
     content: '';
     position: absolute;
-    width: 0;
-    height: 1px;
-    background-color: var(--accent);
-    transition: width 0.4s ease;
-  }
-  
-  &:before {
     left: 0;
-    top: 0;
-  }
-  
-  &:after {
-    right: 0;
-    bottom: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 0;
+    background-color: var(--accent);
+    transition: height 0.3s ease;
   }
   
   &:hover {
     color: var(--accent);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background: rgba(212, 175, 55, 0.05);
     
-    &:before, &:after {
-      width: 100%;
+    &:before {
+      height: 70%;
     }
   }
 `;
@@ -281,6 +263,33 @@ const menuVariants = {
   }
 };
 
+// Overlay for the rest of the screen
+const Overlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+  backdrop-filter: blur(5px);
+`;
+
+const overlayVariants = {
+  closed: {
+    opacity: 0,
+    transition: {
+      duration: 0.3
+    }
+  },
+  open: {
+    opacity: 1,
+    transition: {
+      duration: 0.3
+    }
+  }
+};
+
 const linkVariants = {
   closed: {
     y: 20,
@@ -304,35 +313,71 @@ const DecorativeCircle = styled(motion.div)`
   pointer-events: none;
 `;
 
+const MenuSection = styled.div`
+  margin-bottom: 2rem;
+  width: 100%;
+`;
+
+const MenuSectionTitle = styled.h4`
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(212, 175, 55, 0.7);
+  margin-bottom: 1rem;
+  margin-left: 1.5rem;
+`;
+
+const ContactInfo = styled.div`
+  margin-top: 2rem;
+  padding: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--muted-text);
+  line-height: 1.6;
+  
+  strong {
+    color: var(--accent);
+    font-weight: 500;
+  }
+`;
+
+const Divider = styled(motion.div)`
+  width: 90%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.2), transparent);
+  margin: 1rem 0 1.5rem 1.5rem;
+`;
+
 const LogoContainer = styled(motion.div)`
   position: absolute;
-  top: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0.1;
+  top: 1.5rem;
+  left: 2rem;
+  opacity: 0.8;
 `;
 
 const SocialLinks = styled(motion.div)`
   display: flex;
-  gap: 1.5rem;
-  margin-top: 3rem;
+  gap: 1.2rem;
+  margin-top: 2rem;
+  margin-left: 1.5rem;
 `;
 
 const SocialLink = styled(motion.a)`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
   border-radius: 50%;
   color: var(--accent);
   transition: all 0.3s ease;
+  font-size: 0.9rem;
   
   &:hover {
     background-color: var(--accent);
     color: var(--dark-background);
     transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   }
 `;
 
@@ -385,114 +430,183 @@ const Navbar = () => {
         
         <AnimatePresence>
           {mobileMenuOpen && (
-            <MobileMenu
-              initial="closed"
-              animate="open"
-              exit="closed"
-              variants={menuVariants}
-            >
-              <DecorativeCircle 
-                style={{ width: '300px', height: '300px', top: '20%', left: '10%' }}
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.1, 0.15, 0.1],
-                }}
-                transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+            <>
+              <Overlay 
+                initial="closed"
+                animate="open"
+                exit="closed"
+                variants={overlayVariants}
+                onClick={() => setMobileMenuOpen(false)}
               />
-              <DecorativeCircle 
-                style={{ width: '200px', height: '200px', bottom: '15%', right: '10%' }}
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.1, 0.2, 0.1],
-                }}
-                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-              />
-              
-              <LogoContainer
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 0.1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
+              <MobileMenu
+                initial="closed"
+                animate="open"
+                exit="closed"
+                variants={menuVariants}
               >
-                <img src={process.env.PUBLIC_URL + '/logov.png'} alt="Vedanta Ventures" width="120" />
-              </LogoContainer>
-              
-              <MobileNavLinks>
-                <MobileNavLink 
-                  to="/" 
-                  onClick={() => setMobileMenuOpen(false)}
-                  variants={linkVariants}
-                  whileHover={{ x: 5 }}
-                >
-                  Home
-                </MobileNavLink>
-                <MobileNavLink 
-                  to="/about" 
-                  onClick={() => setMobileMenuOpen(false)}
-                  variants={linkVariants}
-                  whileHover={{ x: 5 }}
-                >
-                  About
-                </MobileNavLink>
-                <MobileNavLink 
-                  to="/ventures" 
-                  onClick={() => setMobileMenuOpen(false)}
-                  variants={linkVariants}
-                  whileHover={{ x: 5 }}
-                >
-                  Ventures
-                </MobileNavLink>
-                <MobileNavLink 
-                  to="/insights" 
-                  onClick={() => setMobileMenuOpen(false)}
-                  variants={linkVariants}
-                  whileHover={{ x: 5 }}
-                >
-                  Insights
-                </MobileNavLink>
-                <MobileNavLink 
-                  to="/contact" 
-                  onClick={() => setMobileMenuOpen(false)}
-                  variants={linkVariants}
-                  whileHover={{ x: 5 }}
-                >
-                  Contact
-                </MobileNavLink>
+                <DecorativeCircle 
+                  style={{ width: '200px', height: '200px', top: '10%', right: '10%' }}
+                  animate={{
+                    scale: [1, 1.1, 1],
+                    opacity: [0.05, 0.1, 0.05],
+                  }}
+                  transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+                />
+                <DecorativeCircle 
+                  style={{ width: '150px', height: '150px', bottom: '15%', left: '10%' }}
+                  animate={{
+                    scale: [1, 1.15, 1],
+                    opacity: [0.05, 0.1, 0.05],
+                  }}
+                  transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+                />
                 
-                <SocialLinks
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8, duration: 0.5 }}
+                <LogoContainer
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 0.8, x: 0 }}
+                  transition={{ delay: 0.3, duration: 0.5 }}
                 >
-                  <SocialLink 
-                    href="https://linkedin.com" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    whileHover={{ y: -3 }}
-                    whileTap={{ scale: 0.95 }}
+                  <img src={process.env.PUBLIC_URL + '/logov.png'} alt="Vedanta Ventures" width="100" />
+                </LogoContainer>
+                
+                <MobileNavLinks>
+                  <MenuSectionTitle>Navigation</MenuSectionTitle>
+                  <Divider 
+                    initial={{ width: 0 }}
+                    animate={{ width: '90%' }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                  />
+                  
+                  <MenuSection>
+                    <MobileNavLink 
+                      to="/" 
+                      onClick={() => setMobileMenuOpen(false)}
+                      variants={linkVariants}
+                      whileHover={{ x: 5 }}
+                    >
+                      <i className="fas fa-home" style={{ marginRight: '12px', fontSize: '0.9rem' }}></i> Home
+                    </MobileNavLink>
+                    <MobileNavLink 
+                      to="/about" 
+                      onClick={() => setMobileMenuOpen(false)}
+                      variants={linkVariants}
+                      whileHover={{ x: 5 }}
+                    >
+                      <i className="fas fa-info-circle" style={{ marginRight: '12px', fontSize: '0.9rem' }}></i> About
+                    </MobileNavLink>
+                    <MobileNavLink 
+                      to="/ventures" 
+                      onClick={() => setMobileMenuOpen(false)}
+                      variants={linkVariants}
+                      whileHover={{ x: 5 }}
+                    >
+                      <i className="fas fa-briefcase" style={{ marginRight: '12px', fontSize: '0.9rem' }}></i> Ventures
+                    </MobileNavLink>
+                    <MobileNavLink 
+                      to="/insights" 
+                      onClick={() => setMobileMenuOpen(false)}
+                      variants={linkVariants}
+                      whileHover={{ x: 5 }}
+                    >
+                      <i className="fas fa-lightbulb" style={{ marginRight: '12px', fontSize: '0.9rem' }}></i> Insights
+                    </MobileNavLink>
+                    <MobileNavLink 
+                      to="/contact" 
+                      onClick={() => setMobileMenuOpen(false)}
+                      variants={linkVariants}
+                      whileHover={{ x: 5 }}
+                    >
+                      <i className="fas fa-envelope" style={{ marginRight: '12px', fontSize: '0.9rem' }}></i> Contact
+                    </MobileNavLink>
+                  </MenuSection>
+                  
+                  <MenuSectionTitle>Legal</MenuSectionTitle>
+                  <Divider 
+                    initial={{ width: 0 }}
+                    animate={{ width: '90%' }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                  />
+                  
+                  <MenuSection>
+                    <MobileNavLink 
+                      to="/privacy" 
+                      onClick={() => setMobileMenuOpen(false)}
+                      variants={linkVariants}
+                      whileHover={{ x: 5 }}
+                    >
+                      <i className="fas fa-shield-alt" style={{ marginRight: '12px', fontSize: '0.9rem' }}></i> Privacy Policy
+                    </MobileNavLink>
+                    <MobileNavLink 
+                      to="/terms" 
+                      onClick={() => setMobileMenuOpen(false)}
+                      variants={linkVariants}
+                      whileHover={{ x: 5 }}
+                    >
+                      <i className="fas fa-file-contract" style={{ marginRight: '12px', fontSize: '0.9rem' }}></i> Terms of Service
+                    </MobileNavLink>
+                  </MenuSection>
+                  
+                  <MenuSectionTitle>Connect</MenuSectionTitle>
+                  <Divider 
+                    initial={{ width: 0 }}
+                    animate={{ width: '90%' }}
+                    transition={{ duration: 0.5, delay: 0.6 }}
+                  />
+                  
+                  <SocialLinks
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7, duration: 0.5 }}
                   >
-                    <i className="fab fa-linkedin-in"></i>
-                  </SocialLink>
-                  <SocialLink 
-                    href="https://twitter.com" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    whileHover={{ y: -3 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <i className="fab fa-twitter"></i>
-                  </SocialLink>
-                  <SocialLink 
-                    href="https://instagram.com" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    whileHover={{ y: -3 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <i className="fab fa-instagram"></i>
-                  </SocialLink>
-                </SocialLinks>
-              </MobileNavLinks>
-            </MobileMenu>
+                    <SocialLink 
+                      href="https://linkedin.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      whileHover={{ y: -3 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <i className="fab fa-linkedin-in"></i>
+                    </SocialLink>
+                    <SocialLink 
+                      href="https://twitter.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      whileHover={{ y: -3 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <i className="fab fa-twitter"></i>
+                    </SocialLink>
+                    <SocialLink 
+                      href="https://instagram.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      whileHover={{ y: -3 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <i className="fab fa-instagram"></i>
+                    </SocialLink>
+                    <SocialLink 
+                      href="https://facebook.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      whileHover={{ y: -3 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <i className="fab fa-facebook-f"></i>
+                    </SocialLink>
+                  </SocialLinks>
+                  
+                  <ContactInfo>
+                    <strong>Vedanta Ventures</strong><br />
+                    #17, 2nd Floor, 7th Main Road<br />
+                    2nd Stage, Indiranagar<br />
+                    Bengaluru - 560038<br /><br />
+                    <strong>Email:</strong> vedantaventures1@gmail.com<br />
+                    <strong>Phone:</strong> +91 9979972714
+                  </ContactInfo>
+                </MobileNavLinks>
+              </MobileMenu>
+            </>
           )}
         </AnimatePresence>
       </NavbarInner>
